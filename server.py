@@ -1,17 +1,19 @@
 from flask import Flask
-import os
-import environ
+# import sys, os
+# import environ
 import datetime
-import urllib.request
+# import urllib.request
+import utils.translate.papago as translater
+import utils.translate.hello as hello
+import utils.OCR.run as OCR
   
 timeNow = datetime.datetime.now()
-
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+# env = environ.Env(
+#     # set casting, default value
+#     DEBUG=(bool, False)
+# )
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
   
 app = Flask(__name__)
@@ -28,28 +30,19 @@ def get_time():
         }
       
 @app.route('/api/translate', methods=['GET'])
-def papago():
-    client_id = os.environ.get('NAVER_CLIENT_KEY')
-    client_secret = os.environ.get('NAVER_CLIENT_SECRET')
-    doTest = "please transfer this sentence to korean"
-    data = "source=en&target=ko&text=" + doTest
-    url = "https://openapi.naver.com/v1/papago/n2mt"
-    
-    request = urllib.request.Request(url)
-    request.add_header("X-Naver-Client-Id",client_id)
-    request.add_header("X-Naver-Client-Secret",client_secret)
-    response = urllib.request.urlopen(request, data=data.encode("utf-8"))
-    rescode = response.getcode()
-    # 호출이 성공할 경우 결과값 return
-    if(rescode==200):
-        response_body = response.read()
-        result = response_body.decode('utf-8')
-        print("==========================")
-        print(result)
-        return result
-    else:
-        print("Error Code:" + rescode)
-        return "Error Code:" + rescode
+def translate():
+    print(translater.papago())
+    return(translater.papago())
+
+@app.route('/api/test')
+def doTest():
+    print(hello.wow())
+    return(hello.wow())
+
+@app.route('/api/ocr')
+def readText():
+    OCR
+    return "wow"
       
 # Running app
 if __name__ == '__main__':
