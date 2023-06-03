@@ -23,8 +23,7 @@ def papago(string):
     if(rescode==200):
         response_body = response.read()
         result = response_body.decode('utf-8')
-        print("==========================")
-        print(result)
+        
         return result
     else:
         print("Error Code:" + rescode)

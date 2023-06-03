@@ -20,18 +20,15 @@ def get_files(path):
 
     return file_list, len(file_list)
 
-def perform_ocr():
+def perform_ocr(image):
     # Using custom model
-    print("start")
-    print("==================================")
     reader = easyocr.Reader(['en'], gpu=True,
                             model_storage_directory='./utils/OCR/',
                             user_network_directory='./utils/OCR/',
                             recog_network='custom')
     print("reader generated")
-    result = reader.readtext('./utils/OCR/inputImages/example.jpg', detail = 0)
+    result = reader.readtext(image, detail = 0)
     print("result generated")
-    print(result)
     files, count = get_files('./utils/OCR/inputImages/')
     pth = './utils/OCR/inputImages/'
     # Do something with the OCR result or files
