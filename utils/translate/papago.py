@@ -8,11 +8,10 @@ env = environ.Env(
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-def papago():
+def papago(string):
     client_id = os.environ.get('NAVER_CLIENT_KEY')
     client_secret = os.environ.get('NAVER_CLIENT_SECRET')
-    doTest = "please transfer this sentence to korean"
-    data = "source=en&target=ko&text=" + doTest
+    data = "source=en&target=ko&text=" + string
     url = "https://openapi.naver.com/v1/papago/n2mt"
     
     request = urllib.request.Request(url)

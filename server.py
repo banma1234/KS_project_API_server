@@ -5,7 +5,7 @@ import datetime
 # import urllib.request
 import utils.translate.papago as translater
 import utils.translate.hello as hello
-import utils.OCR.run as OCR
+import run as OCR
   
 timeNow = datetime.datetime.now()
 # env = environ.Env(
@@ -28,21 +28,18 @@ def get_time():
         "Date":timeNow, 
         "programming":"python"
         }
-      
-@app.route('/api/translate', methods=['GET'])
-def translate():
-    print(translater.papago())
-    return(translater.papago())
 
 @app.route('/api/test')
 def doTest():
     print(hello.wow())
     return(hello.wow())
 
-@app.route('/api/ocr')
+@app.route('/api/scanImage')
 def readText():
-    OCR
-    return "wow"
+    imageToText = OCR.perform_ocr()
+    result = translater.papago(imageToText)
+    
+    return result
       
 # Running app
 if __name__ == '__main__':
