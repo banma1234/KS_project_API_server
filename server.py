@@ -1,19 +1,10 @@
 from flask import Flask
-# import sys, os
-# import environ
 import datetime
-# import urllib.request
 import utils.translate.papago as translater
 import utils.translate.hello as hello
 import run as OCR
   
 timeNow = datetime.datetime.now()
-# env = environ.Env(
-#     # set casting, default value
-#     DEBUG=(bool, False)
-# )
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
   
 app = Flask(__name__)
