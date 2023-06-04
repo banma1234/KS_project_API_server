@@ -1,11 +1,11 @@
-import os
+# import os
 from easyocr.easyocr import *
 import easyocr
-from PIL import ImageFile
-ImageFile.LOAD_TRUNCATED_IMAGES = True
+# from PIL import ImageFile
+# ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 # GPU 설정
-os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
+# os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
 
 def perform_ocr(image):
     # Using custom model
