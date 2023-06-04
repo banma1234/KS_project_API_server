@@ -7,19 +7,6 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 # GPU 설정
 os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
 
-
-def get_files(path):
-    file_list = []
-
-    files = [f for f in os.listdir(path) if not f.startswith('.')]  # skip hidden file
-    files.sort()
-    abspath = os.path.abspath(path)
-    for file in files:
-        file_path = os.path.join(abspath, file)
-        file_list.append(file_path)
-
-    return file_list, len(file_list)
-
 def perform_ocr(image):
     # Using custom model
     reader = easyocr.Reader(['en'], gpu=True,
@@ -28,11 +15,6 @@ def perform_ocr(image):
                             recog_network='custom')
     print("reader generated")
     result = reader.readtext(image, detail = 0)
-    print("result generated")
-    files, count = get_files('./utils/OCR/inputImages/')
-    pth = './utils/OCR/inputImages/'
-    # Do something with the OCR result or files
-    # ...
 
     return ' '.join(result)
 
