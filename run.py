@@ -1,6 +1,6 @@
 # import os
-from easyocr.easyocr import *
-import easyocr
+# from easyocr.easyocr import *
+import easyocr.easyocr
 # from PIL import ImageFile
 # ImageFile.LOAD_TRUNCATED_IMAGES = True
 
