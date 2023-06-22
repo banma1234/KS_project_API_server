@@ -1,16 +1,16 @@
 import urllib.request
-import environ
-import os
+# import environ
+# import os
 
-env = environ.Env(
-    DEBUG=(bool, False)
-)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+# env = environ.Env(
+#     DEBUG=(bool, False)
+# )
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 def papago(string):
-    client_id = os.environ.get('NAVER_CLIENT_KEY')
-    client_secret = os.environ.get('NAVER_CLIENT_SECRET')
+    client_id = "92S0absIUZJOfpBKLgGl"
+    client_secret = "xpZVKEY8Ba"
     data = "source=en&target=ko&text=" + string
     url = "https://openapi.naver.com/v1/papago/n2mt"
     
